@@ -9,16 +9,22 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-    //ドラムを表示する変数
+    //変数
     @IBOutlet var drumButton: UIButton!
     
+    @IBOutlet var pianoButton: UIButton!
+    
+    //音変数
     let drumSoundPlayer = try! AVAudioPlayer(data: NSDataAsset(name: "drumSound")!.data)
-
+    
+    let pianoSoundPlayer = try! AVAudioPlayer(data: NSDataAsset(name: "pianoSound")!.data)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+    //drum
     @IBAction func touchDownDrumButton(){
         
         //ドラムが鳴っている画像に切り替える
@@ -31,6 +37,21 @@ class ViewController: UIViewController {
     
     @IBAction func touchUpDrumButton(){
         drumButton.setImage(UIImage(named: "drumImage"), for: .normal)
+    }
+    
+    //piano
+    @IBAction func touchDownPianoButton(){
+        
+        //ドラムが鳴っている画像に切り替える
+        pianoButton.setImage(UIImage(named: "pianoPlayingImage"), for: .normal)
+        
+        pianoSoundPlayer.currentTime = 0
+        
+        pianoSoundPlayer.play()
+    }
+    
+    @IBAction func touchUpPianoButton(){
+        pianoButton.setImage(UIImage(named: "pianoImage"), for: .normal)
     }
 
 
